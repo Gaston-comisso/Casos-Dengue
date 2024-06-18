@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../static/img/dengue.png" type="image/png">
+    <title>DengueAlerta | Login</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .login-container h2 {
+            color: #00A9B0;
+                }
+        .btn-primary {
+            background-color: #00A9B0;
+            border-color: #00A9B0;
+        }
+        .btn-primary:hover {
+            background-color: #00A9B0;
+            border-color: #00A9B0;
+        }
+        .container {
+    text-align: center; /* Centra la imagen horizontalmente dentro del contenedor */
+    margin-top: 20px;
+}
+
+/* Selecciona la imagen específica por su clase */
+.logo {
+    width: 150px; /* Ajusta el ancho de la imagen */
+    height: 150px;
+    border-radius:100%;
+}
+
+.inicio, .registro {
+    margin-bottom: 25px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="../static/img/dengue.png" alt="logo de pizza" class="logo">
+    </div>
+    <div class="container">
+        <div class="login-container bg-light">
+            <form action="/procesar_login" method="POST">
+                <h2 class="text-center mb-4">Iniciar Sesión</h2>
+                <h2 class="text-center mb-4">DengueAlerta</h2>
+                
+                <div class="mb-3">
+                    <label for="inputPassword5" class="form-label" >Email</label>
+                    <input type="email" id="inputEmail"name="Email" class="form-control" aria-describedby="passwordHelpBlock" >
+                    <div id="EmailHelpBlock" class="form-text" ></div>
+                </div>
+                    
+                <div class="mb-3">
+                    <label for="inputPassword5" class="form-label" >Contraseña</label>
+                    <input type="password" id="inputPassword"name="Password" class="form-control" aria-describedby="passwordHelpBlock" >
+                    <div id="passwordHelpBlock" class="form-text" ></div>
+                <div class="inicio">
+                    <p> </p>
+                    <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+                </div>
+                <div class="registro">
+                    <button type="submit" class="btn btn-primary w-100">Registrate</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5 fixed-bottom">
+        &copy; 2024 DengueAlerta. Todos los derechos reservados. informate a este numero(261234567)
+    </footer>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
