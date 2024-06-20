@@ -112,7 +112,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form action="/cargadecasos" method="POST">
                                 <div class="mb-3">
                                     <label for="nombre" class="form-label">Nombre:</label>
                                     <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre">
@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="telefono" class="form-label">Teléfono:</label>
-                                    <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el teléfono">
+                                    <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el teléfono">
                                 </div>
                                 <div class="mb-3">
                                     <label for="direccion" class="form-label">Dirección:</label>
@@ -134,23 +134,20 @@
                                     <input type="text" class="form-control" id="barrio" name="barrio" placeholder="Ingrese el barrio">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="distrito" class="form-label">Distrito:</label>
-                                    <input type="text" class="form-control" id="distrito"  name="distrito" placeholder="Ingrese el distrito">
-                                </div>
-                                <div class="mb-3">
                                     <label for="estadoPedido" class="form-label">Seleccione el  Tipo:</label>
                                     <select class="form-select" id="TipoDecaso" name="TipoDecaso">
-                                        <option value="aceptado">Caso A</option>
-                                        <option value="en-proceso">Caso B</option>
-                                        <option value="en-camino">Caso C</option>
+                                        <option value="Caso A">Caso A</option>
+                                        <option value="Caso B">Caso B</option>
+                                        <option value="Caso C">Caso C</option>
                                     </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Agregar</button>
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Agregar</button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
