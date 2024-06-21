@@ -36,19 +36,23 @@
         .container {
     text-align: center;
     margin-top: 20px;
-}
+    margin-bottom: 25px;
+    }
 
-/* Selecciona la imagen específica por su clase */
-.logo {
-    width: 150px; 
-    height: 150px;
-    border-radius:100%;
+    /* Selecciona la imagen específica por su clase */
+    .logo {
+        width: 150px; 
+        height: 150px;
+        border-radius:100%;
+    }
+    .registro {
+    margin-bottom: 45px;
 }
 
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" >
         <img src="../static/img/dengue.png" alt="logo de pizza" class="logo">
     </div>
     <div class="container">
@@ -77,11 +81,14 @@
                     <input type="password" id="inputPassword"name="Password" class="form-control" aria-describedby="passwordHelpBlock" >
                     <div id="passwordHelpBlock" class="form-text" ></div>
                 </div>
-                <div class="mb-3 form-check">
+                <div class="mb-3 form-check cotainer">
                     <input type="checkbox" class="form-check-input" id="termsCheck" required>
                     <label class="form-check-label" for="termsCheck">Acepto los <a href="#">términos y condiciones</a></label>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Registrate</button>
+                <div clas="registro container">
+                    <button type="submit" class="btn btn-primary w-100">Registrate</button>
+                </div>
+
 
             </form>
         </div>
