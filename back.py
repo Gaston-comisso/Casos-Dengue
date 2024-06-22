@@ -38,6 +38,15 @@ def carga_de_casos():
         # Redirigir a la página de inicio después de la inserción
         return redirect(url_for('pagina_inicio'))
 
+# ruta para la eliminacion de casos
+@app.route('/delete/<int:id>')
+def eliminar_producto(id):
+    cur = mysql.connection.cursor()    
+    cur.execute('DELETE FROM grupos WHERE id = %s', (id,))
+    mysql.connection.commit()
+    cur.close()
+    return redirect(url_for('pagina_inicio'))
+
 # Ruta para la página de inicio
 @app.route("/pagina-inicio")
 def pagina_inicio():

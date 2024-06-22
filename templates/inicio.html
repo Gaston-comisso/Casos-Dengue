@@ -212,8 +212,8 @@
                                         <button class="btn btn-primary btn-sm me-2 mb-2 mb-sm-0" data-bs-toggle="modal" data-bs-target="#mi-modal-2">
                                             Editar
                                         </button>
-                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#mi-modal-2">
-                                            Eliminar
+                                        <button class="btn btn-danger btn-sm" onclick="eliminarGrupo('{{ grupo[0] }}')" >
+                                            Eliminar <!-- boton para llamar script de eliminacion -->
                                         </button>
                                     </div>
                                 </td>
@@ -246,5 +246,11 @@
         </footer>
     <script src="../static/js/bootstrap.bundle.min.js"></script>
     
+    <!-- agregue este script para llamar a la ruta de eliminacion -->
+    <script type="text/javascript">    
+        function eliminarGrupo(grupoId) {
+            window.location.href = "/delete/" + grupoId;
+        }
+    </script>
 
 </body>
