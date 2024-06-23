@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 import os
@@ -34,7 +34,8 @@ def carga_de_casos():
                     (telefono, nombre, apellido, barrio, direccion, tipo_de_caso))
         mysql.connection.commit()
         cur.close()
-        
+        flash('Los datos se han cargado correctamente', 'success')
+
         # Redirigir a la página de inicio después de la inserción
         return redirect(url_for('pagina_inicio'))
 
@@ -45,6 +46,7 @@ def eliminar_producto(id):
     cur.execute('DELETE FROM grupos WHERE id = %s', (id,))
     mysql.connection.commit()
     cur.close()
+    flash('Eliminado correctamente', 'danger')
     return redirect(url_for('pagina_inicio'))
 
 # Ruta para la página de inicio
@@ -55,7 +57,6 @@ def pagina_inicio():
     cur.execute("SELECT * FROM grupos")
     grupos = cur.fetchall()
     cur.close()
-    
     # Pasar los datos a la plantilla para mostrarlos
     return render_template("inicio.html", grupos=grupos)
 
