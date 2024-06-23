@@ -60,6 +60,40 @@ def pagina_inicio():
     # Pasar los datos a la plantilla para mostrarlos
     return render_template("inicio.html", grupos=grupos)
 
+# Ruta y función para la edición de casos
+@app.route('/editar/<int:id>', methods=['GET', 'POST'])
+def editar_grupo(id):
+    if request.method == 'POST':
+        telefono = request.form['telefono']
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        barrio = request.form['barrio']
+        direccion = request.form['direccion']
+        tipo_de_caso = request.form['TipoDecaso']
+
+        # Actualizar los datos en la base de datos
+        cur = mysql.connection.cursor()
+        cur.execute('''UPDATE grupos
+                       SET telefono = %s, nombre = %s, apellido = %s, barrio = %s, direccion = %s, casos = %s
+                       WHERE id = %s''',
+                    (telefono, nombre, apellido, barrio, direccion, tipo_de_caso, id))
+        mysql.connection.commit()
+        cur.close()
+        flash('Datos actualizados correctamente', 'success')
+
+        # Redirigir a la página de inicio después de la actualización
+        return redirect(url_for('pagina_inicio'))
+    
+    # Obtener los datos del grupo a editar
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM grupos WHERE id = %s", (id,))
+    grupo = cur.fetchone()
+    cur.close()
+
+    # Renderizar el formulario de edición con los datos actuales
+    return render_template('inicio.html', grupo=grupo)
+
+
 # Rutas adicionales (puedes definir más rutas según tus necesidades)
 @app.route("/")
 def home():

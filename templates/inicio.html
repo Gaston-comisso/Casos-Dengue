@@ -210,43 +210,93 @@
             
             
             
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Teléfono</th>
-                                <th>Dirección</th>
-                                <th>Barrio</th>
-                                <th>Tipo de Caso</th>
-                                <th>Acciones</th> <!-- Agregué esta columna para los botones de editar y eliminar -->
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for grupo in grupos %}
-                            <tr>
-                                <td>{{ grupo[1] }}</td>
-                                <td>{{ grupo[2] }}</td>
-                                <td>{{ grupo[3] }}</td>
-                                <td>{{ grupo[4] }}</td>
-                                <td>{{ grupo[5] }}</td>
-                                <td>{{ grupo[6] }}</td>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <button class="btn btn-primary btn-sm me-2 mb-2 mb-sm-0" data-bs-toggle="modal" data-bs-target="#mi-modal-2">
-                                            Editar
-                                        </button>
-                                        <button class="btn btn-danger btn-sm" onclick="eliminarGrupo('{{ grupo[0] }}')" >
-                                            Eliminar <!-- boton para llamar script de eliminacion -->
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+<!-- inicio.html -->
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Barrio</th>
+                <th>Tipo de Caso</th>
+                <th>Acciones</th> <!-- Agregué esta columna para los botones de editar y eliminar -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for grupo in grupos %}
+            <tr>
+                <td>{{ grupo[1] }}</td>
+                <td>{{ grupo[2] }}</td>
+                <td>{{ grupo[3] }}</td>
+                <td>{{ grupo[4] }}</td>
+                <td>{{ grupo[5] }}</td>
+                <td>{{ grupo[6] }}</td>
+                <td>
+                    <div class="d-flex justify-content-center">
+                        <!-- Botón para abrir el modal de edición -->
+                        <button class="btn btn-primary btn-sm me-2 mb-2 mb-sm-0" data-bs-toggle="modal" data-bs-target="#editarGrupo{{ grupo[0] }}">
+                            Editar
+                        </button>
+                        <!-- Botón para eliminar -->
+                        <button class="btn btn-danger btn-sm" onclick="eliminarGrupo('{{ grupo[0] }}')">
+                            Eliminar
+                        </button>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Modal de edición para cada grupo -->
+            <div class="modal fade" id="editarGrupo{{ grupo[0] }}" tabindex="-1" aria-labelledby="editarGrupoLabel{{ grupo[0] }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editarGrupoLabel{{ grupo[0] }}">Editar Grupo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ url_for('editar_grupo', id=grupo[0]) }}" method="post">
+                                <div class="mb-3">
+                                    <label for="telefono{{ grupo[0] }}" class="form-label">Teléfono</label>
+                                    <input type="text" class="form-control" id="telefono{{ grupo[0] }}" name="telefono" value="{{ grupo[3] }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nombre{{ grupo[0] }}" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre{{ grupo[0] }}" name="nombre" value="{{ grupo[1] }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="apellido{{ grupo[0] }}" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" id="apellido{{ grupo[0] }}" name="apellido" value="{{ grupo[2] }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="barrio{{ grupo[0] }}" class="form-label">Barrio</label>
+                                    <input type="text" class="form-control" id="barrio{{ grupo[0] }}" name="barrio" value="{{ grupo[5] }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="direccion{{ grupo[0] }}" class="form-label">Dirección</label>
+                                    <input type="text" class="form-control" id="direccion{{ grupo[0] }}" name="direccion" value="{{ grupo[4] }}" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="TipoDecaso{{ grupo[0] }}" class="form-label">Tipo de Caso</label>
+                                    <select class="form-select" id="TipoDecaso{{ grupo[0] }}" name="TipoDecaso" required>
+                                        <option value="Caso A" {% if grupo[6] == 'Caso A' %} selected {% endif %}>Caso A</option>
+                                        <option value="Caso B" {% if grupo[6] == 'Caso B' %} selected {% endif %}>Caso B</option>
+                                        <option value="Caso C" {% if grupo[6] == 'Caso C' %} selected {% endif %}>Caso C</option>
+                                        <!-- Agrega más opciones según sea necesario -->
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
             </section>
             
             
