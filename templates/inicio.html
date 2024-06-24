@@ -186,27 +186,46 @@
             <!-- Sección para mostrar los datos ingresados -->
             <section id="datos-ingresados" class="container my-4">
                 <h2>Datos Ingresados</h2>
+        <!-- Mostrar mensaje de carga exitosa -->
                 {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    <div class="flash-messages">
-                        {% for category, message in messages %}
-                            {% if category == 'success' %}
-                                <div class="alert alert-success">
-                                    {{ message }}
-                                </div>
-                            {% elif category == 'error' %}
-                                <div class="alert alert-danger">
-                                    {{ message }}
-                                </div>
-                            {% else %}
-                                <div class="alert alert-{{ category }}">
-                                    {{ message }}
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endwith %}
+                    {% for category, message in messages %}
+                        {% if category == 'carga_success' %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
+
+                <!-- Mostrar mensaje de eliminación exitosa -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% for category, message in messages %}
+                        {% if category == 'delete_danger' %}
+                            <div class="alert alert-danger">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    {% if category == 'success' %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endwith %}
+                <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    setTimeout(function() {
+                        let flashMessages = document.querySelectorAll('.alert');
+                        flashMessages.forEach(function(flash) {
+                            flash.style.display = 'none';
+                        });
+                    }, 5000);
+                });
+                </script>
             
             
             

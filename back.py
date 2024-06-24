@@ -64,7 +64,7 @@ def register():
         mysql.connection.commit()
         cur.close()
         
-        flash('Registro exitoso!', 'success')
+        flash('Registro exitoso! Ahora puedes iniciar sesión.', 'success')
         return redirect(url_for('login'))
     
     return render_template('registre.html')
@@ -84,10 +84,10 @@ def login():
         if user:
             user_obj = User(user[0], user[1], user[2],user[3],user[4])
             login_user(user_obj)
-            flash('inicio de sesion exitoso!', 'success')
+            flash('inicio de sesion exitoso!', 'login_success')
             return redirect(url_for('pagina_inicio'))
         else:
-            flash('Credenciales Invalidas', 'error')
+            flash('Credenciales Invalidas', 'login_error')
     return render_template('login.html')
 
 
@@ -119,7 +119,7 @@ def carga_de_casos():
                     (telefono, nombre, apellido, barrio, direccion, tipo_de_caso))
         mysql.connection.commit()
         cur.close()
-        flash('Los datos se han cargado correctamente', 'success')
+        flash('Los datos se han cargado correctamente', 'carga_success')
 
         # Redirigir a la página de inicio después de la inserción
         return redirect(url_for('pagina_inicio'))
@@ -131,7 +131,7 @@ def eliminar_producto(id):
     cur.execute('DELETE FROM grupos WHERE id = %s', (id,))
     mysql.connection.commit()
     cur.close()
-    flash('Eliminado correctamente', 'danger')
+    flash('Eliminado correctamente', 'delete_danger')
     return redirect(url_for('pagina_inicio'))
 
 # Ruta para la página de inicio

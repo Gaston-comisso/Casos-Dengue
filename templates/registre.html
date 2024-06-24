@@ -56,6 +56,25 @@
         <img src="../static/img/dengue.png" alt="logo de pizza" class="logo">
     </div>
     <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            {% if category == 'error' %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endwith %}
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                setTimeout(function() {
+                    let flashMessages = document.querySelectorAll('.alert');
+                    flashMessages.forEach(function(flash) {
+                        flash.style.display = 'none';
+                    });
+                }, 5000);
+            });
+            </script>
         <div class="login-container bg-light">
             <form action="/register" method="POST">
                 <h2 class="text-center mb-4">Registrate</h2>
