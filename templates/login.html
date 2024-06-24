@@ -56,26 +56,26 @@
     </div>
     <div class="container">
         <div class="login-container bg-light">
-            <form action="/procesar_login" method="POST">
+            <form action="/login" method="POST">
                 <h2 class="text-center mb-4">Iniciar Sesión</h2>
                 <h2 class="text-center mb-4">DengueAlerta</h2>
                 
                 <div class="mb-3">
                     <label for="inputPassword5" class="form-label" >Email</label>
-                    <input type="email" id="inputEmail"name="Email" class="form-control" aria-describedby="passwordHelpBlock" >
+                    <input type="email" id="inputEmail"name="email" class="form-control" aria-describedby="passwordHelpBlock" >
                     <div id="EmailHelpBlock" class="form-text" ></div>
                 </div>
                     
                 <div class="mb-3">
                     <label for="inputPassword5" class="form-label" >Contraseña</label>
-                    <input type="password" id="inputPassword"name="Password" class="form-control" aria-describedby="passwordHelpBlock" >
+                    <input type="password" id="inputPassword"name="password" class="form-control" aria-describedby="passwordHelpBlock" >
                     <div id="passwordHelpBlock" class="form-text" ></div>
                 <div class="inicio">
                     <p> </p>
                     <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
                 </div>
                 <div class="registro">
-                    <button type="submit" class="btn btn-primary w-100">Registrate</button>
+                    <button type ="button" onclick="redirect('/register')" class="btn btn-primary w-100">Registrate</button>
                 </div>
             </form>
             
@@ -85,6 +85,11 @@
     <footer class="bg-dark text-white text-center py-3 mt-5 fixed-bottom">
         &copy; 2024 DengueAlerta. Todos los derechos reservados. informate a este numero(261234567)
     </footer>
+    <script>/* script para redireccionar */
+        function redirect(url) {
+            window.location.href = url;
+        }
+    </script>
     <script src="../static/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
