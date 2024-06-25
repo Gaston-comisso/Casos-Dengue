@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
@@ -7,6 +7,7 @@ import os
 app = Flask(__name__)
 
 # Cargar variables de entorno desde un archivo .env
+load_dotenv()
 
 # Configuración de conexión a MySQL
 app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
@@ -90,7 +91,6 @@ def login():
     return render_template('login.html')
 
 
-
 #Ruta de logout
 @app.route('/logout')
 @login_required
@@ -146,7 +146,6 @@ def pagina_inicio():
     # Pasar los datos a la plantilla para mostrarlos
     return render_template("inicio.html", grupos=grupos)
 
-
 # Ruta y función para la edición de casos
 @app.route('/editar/<int:id>', methods=['GET', 'POST'])
 def editar_grupo(id):
@@ -179,6 +178,7 @@ def editar_grupo(id):
 
     # Renderizar el formulario de edición con los datos actuales
     return render_template('inicio.html', grupo=grupo)
+
 
 
 # Rutas adicionales (puedes definir más rutas según tus necesidades)
