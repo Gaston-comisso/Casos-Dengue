@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
@@ -187,6 +187,10 @@ def home():
     if current_user.is_authenticated:
         return redirect(url_for('pagina_inicio')) #si el usuario esta logueado, puede ir a la pagina de inicio directamente
     return render_template("login.html")
+
+#Grafico
+
+
 
 
 
