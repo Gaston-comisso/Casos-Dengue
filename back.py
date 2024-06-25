@@ -7,7 +7,6 @@ import os
 app = Flask(__name__)
 
 # Cargar variables de entorno desde un archivo .env
-load_dotenv()
 
 # Configuración de conexión a MySQL
 app.config['MYSQL_HOST'] = os.getenv('MYSQL_HOST')
@@ -147,6 +146,7 @@ def pagina_inicio():
     # Pasar los datos a la plantilla para mostrarlos
     return render_template("inicio.html", grupos=grupos)
 
+
 # Ruta y función para la edición de casos
 @app.route('/editar/<int:id>', methods=['GET', 'POST'])
 def editar_grupo(id):
@@ -189,7 +189,18 @@ def home():
     return render_template("login.html")
 
 #Grafico
+@app.route('/grafico')
+@login_required
+def grafico():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT casos, COUNT(*) FROM grupos GROUP BY casos')
+    data = cur.fetchall()
+    cur.close()
 
+    labels = [row[0] for row in data]
+    values = [row[1] for row in data]
+
+    return render_template('grafico.html', labels=labels, values=values)
 
 
 
