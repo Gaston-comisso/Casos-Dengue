@@ -124,7 +124,7 @@
     </header>
     </div>
         <div class="logo-container">
-            <img src="../static/img/dengue.png" alt="logo de pizza" class="logo">
+            <img src="../static/img/dengue.png" alt="logo de dengue"  class="logo">
         </div>
         
         <main>
@@ -329,16 +329,21 @@
                             </div>
                         </section>
                     </div>
-                    <div class="col-md-6">
-                        <section id="grafico-casos">
-                            <h2>Ver Gráfico de casos</h2>
-                            <a href="/grafico" class="btn btn-danger ms-lg-3 mb-2 mb-md-0">VER GRÁFICO</a>
-                        </section>
+                    <div class="col-md-6" >
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="card-title">Gráfico de Casos</h2>
+                                <div id="card-grafico">
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                                <div class="total-casos">Total de casos: <span id="totalCasos"></span></div>
+                                <a href="/grafico" class="btn btn-danger mt-3"> AMPLIAR GRÁFICO</a>
+                            </div>
+                        </div>
                     </div>
-                    
                 </div>
             </div>
-        </main>
+            
         
         
 
@@ -356,5 +361,49 @@
             window.location.href = "/delete/" + grupoId;
         }
     </script>
+    <script type="application/json" id="labels">{{ labels|tojson }}</script>
+    <script type="application/json" id="values">{{ values|tojson }}</script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('myChart');
+            var labels = JSON.parse(document.getElementById('labels').textContent);
+            var values = JSON.parse(document.getElementById('values').textContent);
+
+            // Calcular el total de casos
+            var totalCasos = values.reduce((total, valor) => total + valor, 0);
+            document.getElementById('totalCasos').textContent = totalCasos;
+
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Casos de bajo riesgo',
+                        data: values,
+                        backgroundColor: [
+                            'rgba(0, 255, 0, 0.7)', 
+                            'rgba(255, 255, 0, 0.7)', 
+                            'rgba(255, 0, 0, 0.7)', 
+                        ],
+                        borderColor: [
+                            'rgba(0, 255, 0, 0.7)', 
+                            'rgba(255, 255, 0, 0.7)',
+                            'rgba(255, 0, 0, 0.7)', 
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
 
 </body>
