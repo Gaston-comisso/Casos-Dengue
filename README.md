@@ -1,3 +1,3 @@
-solo falta el grafico
+LISTO
 
 
