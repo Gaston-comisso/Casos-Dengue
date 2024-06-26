@@ -137,14 +137,19 @@ def eliminar_producto(id):
 @app.route("/pagina-inicio")
 @login_required
 def pagina_inicio():
-    # Obtener todos los registros de la tabla después de la inserción
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM grupos")
     grupos = cur.fetchall()
+
+    cur.execute('SELECT casos, COUNT(*) FROM grupos GROUP BY casos')
+    data = cur.fetchall()
     cur.close()
+
+    labels = [row[0] for row in data]
+    values = [row[1] for row in data]
+
     flash(f'bienvenido {current_user.nombre}', 'info')
-    # Pasar los datos a la plantilla para mostrarlos
-    return render_template("inicio.html", grupos=grupos)
+    return render_template("inicio.html", grupos=grupos, labels=labels, values=values)
 
 # Ruta y función para la edición de casos
 @app.route('/editar/<int:id>', methods=['GET', 'POST'])
