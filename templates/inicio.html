@@ -95,7 +95,9 @@
             padding: 8px;
         }
     }
-
+    .clase-a { color: green; }
+    .clase-b { color: orange; }
+    .clase-c { color: red; }
     </style>
 </head>
 <body>
@@ -172,6 +174,8 @@
                                         <option value="Caso B">Caso B</option>
                                         <option value="Caso C">Caso C</option>
                                     </select>
+                                    <label class="form-check-label" for="termsCheck"><a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Informacion sobre los casos</a></label>
+                                </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
@@ -182,6 +186,80 @@
                     </div>
                 </div>
             </div>
+            <!-- Modal Información sobre los Casos -->
+            <div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true" aria-labelledby="label-termsModal">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="label-termsModal">Información sobre los Casos</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                <strong style="color: green;">Caso A: Dengue sin signos de alarma ni comorbilidades</strong>
+                            </p>
+                            <p>
+                                <strong>Síntomas específicos:</strong><br>
+                                - Fiebre repentina.<br>
+                                - Dolor de cabeza intenso.<br>
+                                - Dolor detrás de los ojos.<br>
+                                - Dolor muscular y articular.<br>
+                                - Erupción cutánea.<br>
+                                - Náuseas y vómitos.
+                            </p>
+                            <p>
+                                <strong>Recomendaciones:</strong><br>
+                                - Descansar y beber líquidos abundantes (agua, sueros orales).<br>
+                                - Controlar la fiebre con paracetamol, evitando el uso de medicamentos antiinflamatorios no esteroides (AINES) como el ibuprofeno o el aspirina.<br>
+                                - Consultar a un profesional de la salud si los síntomas empeoran o aparecen signos de alarma.
+                            </p>
+
+                            <p>
+                                <strong style="color: orange;">Caso B: Dengue sin signos de alarma con comorbilidades o riesgo social</strong>
+                            </p>
+                            <p>
+                                <strong>Síntomas específicos:</strong><br>
+                                - Incluye los síntomas del Caso A.<br>
+                                - Presencia de enfermedades preexistentes como diabetes, hipertensión u otras condiciones médicas.<br>
+                                - Factores sociales como malas condiciones de vivienda, falta de acceso a atención médica adecuada, entre otros.
+                            </p>
+                            <p>
+                                <strong>Recomendaciones:</strong><br>
+                                - Monitorizar de cerca los síntomas.<br>
+                                - Buscar atención médica para evaluación y manejo adecuado de la fiebre y otros síntomas.<br>
+                                - Mantenerse hidratado y seguir las recomendaciones médicas específicas para manejar las comorbilidades.
+                            </p>
+
+                            <p>
+                                <strong style="color: red;">Caso C: Dengue con signos de alarma</strong>
+                            </p>
+                            <p>
+                                <strong>Síntomas específicos:</strong><br>
+                                - Fiebre severa.<br>
+                                - Dolor abdominal intenso.<br>
+                                - Vómitos persistentes.<br>
+                                - Sangrado de encías, nariz o bajo la piel.<br>
+                                - Letargo o irritabilidad.<br>
+                                - Dificultad para respirar.
+                            </p>
+                            <p>
+                                <strong>Recomendaciones:</strong><br>
+                                - Buscar atención médica de inmediato.<br>
+                                - Hospitalización para monitoreo continuo y manejo de fluidos intravenosos.<br>
+                                - Evaluación para detectar complicaciones graves como el síndrome de choque por dengue.<br>
+                                - Tratamiento específico según las directrices médicas locales para manejar casos graves de Dengue.
+                            </p>
+                            <p>
+                                <em>Para más información, comunícate al 261234567.</em>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
         
             <!-- Sección para mostrar los datos ingresados -->
             <section id="datos-ingresados" class="container my-4">
